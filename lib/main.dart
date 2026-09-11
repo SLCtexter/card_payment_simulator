@@ -20,6 +20,7 @@ class CardPaymentDemoApp extends StatelessWidget {
     );
   }
 }
+
 // SCREEN 1: POS System
 class POSScreen extends StatefulWidget {
   const POSScreen({super.key});
@@ -83,7 +84,6 @@ class _POSScreenState extends State<POSScreen> {
               ),
             ),
             const SizedBox(height: 40),
-            // Flow Path
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
@@ -137,6 +137,7 @@ class _POSScreenState extends State<POSScreen> {
     );
   }
 }
+
 // SCREEN 2: Request Sent
 class RequestScreen extends StatelessWidget {
   const RequestScreen({super.key});
@@ -222,6 +223,7 @@ class RequestScreen extends StatelessWidget {
     );
   }
 }
+
 // SCREEN 3: Card Machine - Tap
 class CardMachineScreen extends StatelessWidget {
   const CardMachineScreen({super.key});
@@ -315,6 +317,7 @@ class CardMachineScreen extends StatelessWidget {
     );
   }
 }
+
 // SCREEN 4: Processing
 class ProcessingScreen extends StatelessWidget {
   const ProcessingScreen({super.key});
@@ -332,7 +335,6 @@ class ProcessingScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Built-in loading spinner (no external package needed)
             const CircularProgressIndicator(
               color: Colors.blue,
               strokeWidth: 6.0,
@@ -418,6 +420,7 @@ class ProcessingScreen extends StatelessWidget {
     );
   }
 }
+
 // SCREEN 5: Response - Approved
 class ResponseScreen extends StatelessWidget {
   const ResponseScreen({super.key});
@@ -518,6 +521,7 @@ class ResponseScreen extends StatelessWidget {
     );
   }
 }
+
 // SCREEN 5b: Response - Declined
 class DeclineScreen extends StatelessWidget {
   const DeclineScreen({super.key});
@@ -596,19 +600,19 @@ class DeclineScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const CompleteScreen()),
+                  MaterialPageRoute(builder: (context) => const TransactionFailedScreen()),
                 );
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
-                backgroundColor: Colors.blue[700],
+                backgroundColor: Colors.red[700],
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
               child: const Text(
-                'Finalize & Print Receipt',
+                'Complete & Print Slip',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
             ),
@@ -618,7 +622,8 @@ class DeclineScreen extends StatelessWidget {
     );
   }
 }
-// SCREEN 6: Transaction Complete
+
+// SCREEN 6: Transaction Complete (Success)
 class CompleteScreen extends StatelessWidget {
   const CompleteScreen({super.key});
 
@@ -746,6 +751,109 @@ class CompleteScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// SCREEN 6b: Transaction Failed (Declined Result)
+class TransactionFailedScreen extends StatelessWidget {
+  const TransactionFailedScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Transaction Failed'),
+        backgroundColor: Colors.red[700],
+        foregroundColor: Colors.white,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'TRANSACTION FAILED',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Payment Declined (Code: 51)',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.red,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 30),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Text(
+                  'Rs. 5,000.00',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.lineThrough,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.red[50],
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Text(
+                  'Reason: Insufficient Funds',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const POSScreen()),
+                    (route) => false,
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
+                  backgroundColor: Colors.red[700],
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  'Try Again / Back to POS',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
