@@ -20,10 +20,7 @@ class CardPaymentDemoApp extends StatelessWidget {
     );
   }
 }
-
-// ===================================================
 // SCREEN 1: POS System
-// ===================================================
 class POSScreen extends StatefulWidget {
   const POSScreen({super.key});
 
@@ -140,10 +137,7 @@ class _POSScreenState extends State<POSScreen> {
     );
   }
 }
-
-// ===================================================
 // SCREEN 2: Request Sent
-// ===================================================
 class RequestScreen extends StatelessWidget {
   const RequestScreen({super.key});
 
@@ -228,10 +222,7 @@ class RequestScreen extends StatelessWidget {
     );
   }
 }
-
-// ===================================================
 // SCREEN 3: Card Machine - Tap
-// ===================================================
 class CardMachineScreen extends StatelessWidget {
   const CardMachineScreen({super.key});
 
@@ -324,10 +315,7 @@ class CardMachineScreen extends StatelessWidget {
     );
   }
 }
-
-// ===================================================
-// SCREEN 4: Processing (Built-in CircularProgressIndicator)
-// ===================================================
+// SCREEN 4: Processing
 class ProcessingScreen extends StatelessWidget {
   const ProcessingScreen({super.key});
 
@@ -430,10 +418,7 @@ class ProcessingScreen extends StatelessWidget {
     );
   }
 }
-
-// ===================================================
 // SCREEN 5: Response - Approved
-// ===================================================
 class ResponseScreen extends StatelessWidget {
   const ResponseScreen({super.key});
 
@@ -533,10 +518,7 @@ class ResponseScreen extends StatelessWidget {
     );
   }
 }
-
-// ===================================================
 // SCREEN 5b: Response - Declined
-// ===================================================
 class DeclineScreen extends StatelessWidget {
   const DeclineScreen({super.key});
 
@@ -636,10 +618,7 @@ class DeclineScreen extends StatelessWidget {
     );
   }
 }
-
-// ===================================================
 // SCREEN 6: Transaction Complete
-// ===================================================
 class CompleteScreen extends StatelessWidget {
   const CompleteScreen({super.key});
 
